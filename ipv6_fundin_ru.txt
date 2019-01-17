@@ -1,17 +1,17 @@
-Инструкция по установке IPV6 на примере монеты Fundin
-Заходим в терминал
+РРЅСЃС‚СЂСѓРєС†РёСЏ РїРѕ СѓСЃС‚Р°РЅРѕРІРєРµ IPV6 РЅР° РїСЂРёРјРµСЂРµ РјРѕРЅРµС‚С‹ Fundin
+Р—Р°С…РѕРґРёРј РІ С‚РµСЂРјРёРЅР°Р»
 
-Лучше работать не под ROOT, а под своим логином, так мне кажется безопаснее:
+Р›СѓС‡С€Рµ СЂР°Р±РѕС‚Р°С‚СЊ РЅРµ РїРѕРґ ROOT, Р° РїРѕРґ СЃРІРѕРёРј Р»РѕРіРёРЅРѕРј, С‚Р°Рє РјРЅРµ РєР°Р¶РµС‚СЃСЏ Р±РµР·РѕРїР°СЃРЅРµРµ:
 
-Для чистого сервера под Ubuntu 16.04/18.04 создаем нового пользователя и ставим библиотеки:
+Р”Р»СЏ С‡РёСЃС‚РѕРіРѕ СЃРµСЂРІРµСЂР° РїРѕРґ Ubuntu 16.04/18.04 СЃРѕР·РґР°РµРј РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рё СЃС‚Р°РІРёРј Р±РёР±Р»РёРѕС‚РµРєРё:
 
-adduser myname - создаем нового пользователя ( для примера myname ) система предложит Вам придумать для нее пароль , пропишите его два раза и запомните %)
+adduser myname - СЃРѕР·РґР°РµРј РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ ( РґР»СЏ РїСЂРёРјРµСЂР° myname ) СЃРёСЃС‚РµРјР° РїСЂРµРґР»РѕР¶РёС‚ Р’Р°Рј РїСЂРёРґСѓРјР°С‚СЊ РґР»СЏ РЅРµРµ РїР°СЂРѕР»СЊ , РїСЂРѕРїРёС€РёС‚Рµ РµРіРѕ РґРІР° СЂР°Р·Р° Рё Р·Р°РїРѕРјРЅРёС‚Рµ %)
 
-usermod -a -G sudo myname - присвоим права администратора для myname ( sudo )
-su myname                 - заходим как пользователь myname, прописываем пароль
-cd                        - заходим в корень папки пользователя myname ( /home/myname )
+sudo usermod -aG myname   - РїСЂРёСЃРІРѕРёРј РїСЂР°РІР° Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР° РґР»СЏ myname ( sudo )
+su myname                 - Р·Р°С…РѕРґРёРј РєР°Рє РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ myname, РїСЂРѕРїРёСЃС‹РІР°РµРј РїР°СЂРѕР»СЊ
+cd                        - Р·Р°С…РѕРґРёРј РІ РєРѕСЂРµРЅСЊ РїР°РїРєРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ myname ( /home/myname )
 
----- ставим нужные библиотеки -----
+---- СЃС‚Р°РІРёРј РЅСѓР¶РЅС‹Рµ Р±РёР±Р»РёРѕС‚РµРєРё -----
 sudo apt -y update
 
 sudo apt -y install build-essential libssl-dev libdb++-dev && sudo apt -y install libboost-all-dev libcrypto++-dev libqrencode-dev && sudo apt -y install libminiupnpc-dev libgmp-dev libgmp3-dev autoconf && sudo apt -y install autogen automake libtool autotools-dev pkg-config && sudo apt -y install bsdmainutils software-properties-common && sudo apt -y install libzmq3-dev libminiupnpc-dev libssl-dev libevent-dev && sudo add-apt-repository ppa:bitcoin/bitcoin
@@ -20,72 +20,72 @@ sudo apt-get update
 
 sudo apt-get install libdb4.8-dev libdb4.8++-dev -y
 
-Теперь можем приступить к установке daemon / client
+РўРµРїРµСЂСЊ РјРѕР¶РµРј РїСЂРёСЃС‚СѓРїРёС‚СЊ Рє СѓСЃС‚Р°РЅРѕРІРєРµ daemon / client
 
-1-ый вариант:
-На момент написания последняя версия v.2.0.1 так что, будьте внимательны при скопировании ссылки с github
-заходим в папку /usr/local/bin/
+1-С‹Р№ РІР°СЂРёР°РЅС‚:
+РќР° РјРѕРјРµРЅС‚ РЅР°РїРёСЃР°РЅРёСЏ РїРѕСЃР»РµРґРЅСЏСЏ РІРµСЂСЃРёСЏ v.2.0.1 С‚Р°Рє С‡С‚Рѕ, Р±СѓРґСЊС‚Рµ РІРЅРёРјР°С‚РµР»СЊРЅС‹ РїСЂРё СЃРєРѕРїРёСЂРѕРІР°РЅРёРё СЃСЃС‹Р»РєРё СЃ github
+Р·Р°С…РѕРґРёРј РІ РїР°РїРєСѓ /usr/local/bin/
 cd /usr/local/bin/
-sudo wget https://github.com/fundin/fundin/releases/download/v2.0.1/fundind    - копируем daemon
-sudo wget https://github.com/fundin/fundin/releases/download/v2.0.1/fundin-cli - копируем client
-Делаем их бинарными
+sudo wget https://github.com/fundin/fundin/releases/download/v2.0.1/fundind    - РєРѕРїРёСЂСѓРµРј daemon
+sudo wget https://github.com/fundin/fundin/releases/download/v2.0.1/fundin-cli - РєРѕРїРёСЂСѓРµРј client
+Р”РµР»Р°РµРј РёС… Р±РёРЅР°СЂРЅС‹РјРё
 sudo chmod 755 fundind     
 sudo chmod 755 fundin-cli  
 
-2-ой вариант:
-В корне папки пользователя myname
+2-РѕР№ РІР°СЂРёР°РЅС‚:
+Р’ РєРѕСЂРЅРµ РїР°РїРєРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ myname
 cd
-mkdir compile - создаем папку compile
+mkdir compile - СЃРѕР·РґР°РµРј РїР°РїРєСѓ compile
 cd compile
-git clone https://github.com/fundin/fundin.git  - клонируем сборку с github
+git clone https://github.com/fundin/fundin.git  - РєР»РѕРЅРёСЂСѓРµРј СЃР±РѕСЂРєСѓ СЃ github
 cd fundin
 sudo ./autogen.sh
 sudo ./configure
 sudo make
 sudo make install
 
-Возвращаемся в корень пользователя myname
+Р’РѕР·РІСЂР°С‰Р°РµРјСЃСЏ РІ РєРѕСЂРµРЅСЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ myname
 cd
-git clone http://github.com/masternodes/vps.git  - делаем клон vps
-cd vps - заходим в эту папку 
-cp -r new_coin_template fundin - клонируем папку new_coin_template в временную папку fundin
-cd fundin - заходим в папку fundin
-nano coin.env - редактируем этот файл
+git clone http://github.com/masternodes/vps.git  - РґРµР»Р°РµРј РєР»РѕРЅ vps
+cd vps - Р·Р°С…РѕРґРёРј РІ СЌС‚Сѓ РїР°РїРєСѓ 
+cp -r new_coin_template fundin - РєР»РѕРЅРёСЂСѓРµРј РїР°РїРєСѓ new_coin_template РІ РІСЂРµРјРµРЅРЅСѓСЋ РїР°РїРєСѓ fundin
+cd fundin - Р·Р°С…РѕРґРёРј РІ РїР°РїРєСѓ fundin
+nano coin.env - СЂРµРґР°РєС‚РёСЂСѓРµРј СЌС‚РѕС‚ С„Р°Р№Р»
 
 --------------------ENV----------------------------
 
-CODENAME=fundin  (название монеты)
-MNODE_DAEMON={MNODE_DAEMON:-/usr/local/bin/fundind}  ( путь к daemon )
-MNODE_INBOUND_PORT=${MNODE_INBOUND_PORT:-7777}    (порт для мастерноды)
-GIT_URL=https://github.com/fundin/fundin.git         (путь к сорцам для компиляции )
-SCVERSION="tags/v2.0.1"                         (версия кошелька)
+CODENAME=fundin  (РЅР°Р·РІР°РЅРёРµ РјРѕРЅРµС‚С‹)
+MNODE_DAEMON={MNODE_DAEMON:-/usr/local/bin/fundind}  ( РїСѓС‚СЊ Рє daemon )
+MNODE_INBOUND_PORT=${MNODE_INBOUND_PORT:-7777}    (РїРѕСЂС‚ РґР»СЏ РјР°СЃС‚РµСЂРЅРѕРґС‹)
+GIT_URL=https://github.com/fundin/fundin.git         (РїСѓС‚СЊ Рє СЃРѕСЂС†Р°Рј РґР»СЏ РєРѕРјРїРёР»СЏС†РёРё )
+SCVERSION="tags/v2.0.1"                         (РІРµСЂСЃРёСЏ РєРѕС€РµР»СЊРєР°)
 
------- сохраняем CRTL+o и выходим с редактора CTRL+x ------
+------ СЃРѕС…СЂР°РЅСЏРµРј CRTL+o Рё РІС‹С…РѕРґРёРј СЃ СЂРµРґР°РєС‚РѕСЂР° CTRL+x ------
 
-mv coin.compile fundin.compile - переименовываем
-mv coin.conf fundin.conf - переименновываем
-mv coin.env fundin.env   - переименновываем
-cd ../   - выходим из папки fundin
-cp -r fundin config      - копируем папку fundin в папку config
-rm -r fundin             - удаляем временную папу fundin
+mv coin.compile fundin.compile - РїРµСЂРµРёРјРµРЅРѕРІС‹РІР°РµРј
+mv coin.conf fundin.conf - РїРµСЂРµРёРјРµРЅРЅРѕРІС‹РІР°РµРј
+mv coin.env fundin.env   - РїРµСЂРµРёРјРµРЅРЅРѕРІС‹РІР°РµРј
+cd ../   - РІС‹С…РѕРґРёРј РёР· РїР°РїРєРё fundin
+cp -r fundin config      - РєРѕРїРёСЂСѓРµРј РїР°РїРєСѓ fundin РІ РїР°РїРєСѓ config
+rm -r fundin             - СѓРґР°Р»СЏРµРј РІСЂРµРјРµРЅРЅСѓСЋ РїР°РїСѓ fundin
 
-Теперь запускаем установку
-sudo ./install.sh -p fundin -c 5 -n 6  - где -p название монеты, -c количество ноды на одном впс, -n тип сети ipv6 
+РўРµРїРµСЂСЊ Р·Р°РїСѓСЃРєР°РµРј СѓСЃС‚Р°РЅРѕРІРєСѓ
+sudo ./install.sh -p fundin -c 5 -n 6  - РіРґРµ -p РЅР°Р·РІР°РЅРёРµ РјРѕРЅРµС‚С‹, -c РєРѕР»РёС‡РµСЃС‚РІРѕ РЅРѕРґС‹ РЅР° РѕРґРЅРѕРј РІРїСЃ, -n С‚РёРї СЃРµС‚Рё ipv6 
 
-После окончания нужно редактировать конфиги fundin_n1.conf по fundin_n5.conf
+РџРѕСЃР»Рµ РѕРєРѕРЅС‡Р°РЅРёСЏ РЅСѓР¶РЅРѕ СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РєРѕРЅС„РёРіРё fundin_n1.conf РїРѕ fundin_n5.conf
 
 sudo nano /etc/masternodes/fundin_n1.conf
 
-Прописываем (privatkey) в строке masternodeprivkey=HERE_GOES_YOUR_MASTERNODE_KEY_FOR_MASTERNODE_XXX_GIT_PROJECT_XXX_XXX_NUM_XXX
-Сохраняем CRTL+o и выходим с редактора CTRL+x
+РџСЂРѕРїРёСЃС‹РІР°РµРј (privatkey) РІ СЃС‚СЂРѕРєРµ masternodeprivkey=HERE_GOES_YOUR_MASTERNODE_KEY_FOR_MASTERNODE_XXX_GIT_PROJECT_XXX_XXX_NUM_XXX
+РЎРѕС…СЂР°РЅСЏРµРј CRTL+o Рё РІС‹С…РѕРґРёРј СЃ СЂРµРґР°РєС‚РѕСЂР° CTRL+x
 
-В локальном кошельке открываем masternode.conf 
-Как обычно прописываем строки :
+Р’ Р»РѕРєР°Р»СЊРЅРѕРј РєРѕС€РµР»СЊРєРµ РѕС‚РєСЂС‹РІР°РµРј masternode.conf 
+РљР°Рє РѕР±С‹С‡РЅРѕ РїСЂРѕРїРёСЃС‹РІР°РµРј СЃС‚СЂРѕРєРё :
 
 Alias | Address IPV6 | PrivateKey | Transaction number | Output index
-R.S. : Address IPV6 можно увидеть в fundin_n1.conf в строке bind
+R.S. : Address IPV6 РјРѕР¶РЅРѕ СѓРІРёРґРµС‚СЊ РІ fundin_n1.conf РІ СЃС‚СЂРѕРєРµ bind
 
-Например:
+РќР°РїСЂРёРјРµСЂ:
 
 MN01 [2a00:6d40:60:909b:626b::1]:7777 4BLLnjpfmTuMLKEZBojVgPEDcRjSVA1szpLiEKWUrMXobidgP bdbc00e3aff9f4f1a682b2c27c9d62ced05b66c190064b015a18856896867fe1 1 
 ---
@@ -94,23 +94,23 @@ MN01 [2a00:6d40:60:909b:626b::1]:7777 4BLLnjpfmTuMLKEZBojVgPEDcRjSVA1szpLiEKWUrM
 MN05 [2a00:6d40:60:909b:626b::5]:7777 4DX8iZh4EzZqP8Gu5tJEt2ZVqNCeV7X8w1nJ9Nq8TT9mdiE7EZ4 72966f8959e6e93012a2ab290dd9aa5827edfa70f057f26810cefdf3da1e4006 0
 
 
-Активируем daemon fundin 
+РђРєС‚РёРІРёСЂСѓРµРј daemon fundin 
 sudo /usr/local/bin/activate_masternodes_fundin
 
-Ждем когда полностью синхронизация с блокчейном закончиться.
+Р–РґРµРј РєРѕРіРґР° РїРѕР»РЅРѕСЃС‚СЊСЋ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ СЃ Р±Р»РѕРєС‡РµР№РЅРѕРј Р·Р°РєРѕРЅС‡РёС‚СЊСЃСЏ.
 
-Команда для проверки ( getinfo ):
+РљРѕРјР°РЅРґР° РґР»СЏ РїСЂРѕРІРµСЂРєРё ( getinfo ):
 sudo fundin-cli -conf=/etc/masternodes/fundin_n1.conf getinfo
 
-Команда для отключения нужной мастерноды, например MN03:
+РљРѕРјР°РЅРґР° РґР»СЏ РѕС‚РєР»СЋС‡РµРЅРёСЏ РЅСѓР¶РЅРѕР№ РјР°СЃС‚РµСЂРЅРѕРґС‹, РЅР°РїСЂРёРјРµСЂ MN03:
 sudo fundin-cli -conf=/etc/mastetnodes/fundin_n3.conf stop
 
-Команда для запуска fundind нужной мастерноды, например MN03:
+РљРѕРјР°РЅРґР° РґР»СЏ Р·Р°РїСѓСЃРєР° fundind РЅСѓР¶РЅРѕР№ РјР°СЃС‚РµСЂРЅРѕРґС‹, РЅР°РїСЂРёРјРµСЂ MN03:
 sudo fundind -conf=/etc/masternodes/fundin_n3.conf -daemon
 
-Ну Вот собственно и все. Удачи.
+РќСѓ Р’РѕС‚ СЃРѕР±СЃС‚РІРµРЅРЅРѕ Рё РІСЃРµ. РЈРґР°С‡Рё.
 
-Если Вам это помогло и хотите отблагодарить:
+Р•СЃР»Рё Р’Р°Рј СЌС‚Рѕ РїРѕРјРѕРіР»Рѕ Рё С…РѕС‚РёС‚Рµ РѕС‚Р±Р»Р°РіРѕРґР°СЂРёС‚СЊ:
 btc: 19iVEmnyCuEJ58gWDtA7sTy2j6ehwD8ruB
 eth: 0x03fF7f63b7dAa7fbB483c8a288AEffEfCD5EAC63
 ltc: LWUytpcey8fJEmFuEWeEdRDQTcHm7nPpY7
